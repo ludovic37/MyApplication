@@ -74,11 +74,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_ID_CITY, weatherVille.getId());
         values.put(KEY_NAME, weatherVille.getName());
-        values.put(KEY_TEMP, weatherVille.getTemp());
-        values.put(KEY_DESC, weatherVille.getDescription());
-        values.put(KEY_RES_ICON, weatherVille.getIcon());
-        values.put(KEY_LAT, weatherVille.getLat());
-        values.put(KEY_LNG, weatherVille.getLon());
+        values.put(KEY_TEMP, weatherVille.getMain_temp());
+        values.put(KEY_DESC, weatherVille.getWeather_Description());
+        values.put(KEY_RES_ICON, weatherVille.getWeather_Icon());
+        values.put(KEY_LAT, weatherVille.getCoord_Lat());
+        values.put(KEY_LNG, weatherVille.getCoord_Lon());
 
         // Inserting Row
         db.insert(TABLE_CITY, null, values);
@@ -113,11 +113,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
                 weatherVille.setId(Integer.parseInt(cursor.getString(1)));
                 weatherVille.setName(cursor.getString(2));
-                weatherVille.setTemp(Double.parseDouble(cursor.getString(3)));
-                weatherVille.setDescription(cursor.getString(4));
-                weatherVille.setIcon(cursor.getString(5));
-                weatherVille.setLat(Double.parseDouble(cursor.getString(6)));
-                weatherVille.setLon(Double.parseDouble(cursor.getString(7)));
+                weatherVille.setMain_temp(Double.parseDouble(cursor.getString(3)));
+                weatherVille.setWeather_Description(cursor.getString(4));
+                weatherVille.setWeather_Icon(cursor.getString(5));
+                weatherVille.setCoord_Lat(Double.parseDouble(cursor.getString(6)));
+                weatherVille.setCoord_Lon(Double.parseDouble(cursor.getString(7)));
 
                 weatherList.add(weatherVille);
                 Log.d("TAG",weatherVille.toString());

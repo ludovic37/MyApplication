@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,7 +16,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.example.ludovic.weatherapp.Model.WeatherVille;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,9 +50,9 @@ public class NewAppWidget extends AppWidgetProvider implements LocationListener 
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
         views.setTextViewText(R.id.textViewCityWidget, weatherVille.getName());
-        views.setTextViewText(R.id.textViewMeteoWidget, weatherVille.getDescription());
-        views.setTextViewText(R.id.textViewTemperatureWidget, weatherVille.getTemp()+"");
-        Bitmap bitmap = getBitmapFromURL("http://openweathermap.org/img/w/" + weatherVille.getIcon() + ".png");
+        views.setTextViewText(R.id.textViewMeteoWidget, weatherVille.getWeather_Description());
+        views.setTextViewText(R.id.textViewTemperatureWidget, weatherVille.getMain_temp()+"");
+        Bitmap bitmap = getBitmapFromURL("http://openweathermap.org/img/w/" + weatherVille.getWeather_Icon() + ".png");
         if (bitmap!= null)
             views.setImageViewBitmap(R.id.imageViewMeteoWidget, bitmap);
 

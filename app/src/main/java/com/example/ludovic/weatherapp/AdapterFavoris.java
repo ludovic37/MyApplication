@@ -1,7 +1,6 @@
 package com.example.ludovic.weatherapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.example.ludovic.weatherapp.Model.WeatherVille;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ludovic on 29/07/16.
@@ -65,9 +63,9 @@ public class AdapterFavoris extends BaseAdapter {
         }
 
         holder.ville.setText(weatherVille.get(i).getName());
-        holder.meteo.setText(weatherVille.get(i).getDescription());
-        holder.temp.setText(weatherVille.get(i).getTemp() + "");
-        Picasso.with(context).load("http://openweathermap.org/img/w/" + weatherVille.get(i).getIcon() + ".png").fit().into(holder.icon);
+        holder.meteo.setText(weatherVille.get(i).getWeather_Description());
+        holder.temp.setText(weatherVille.get(i).getMain_temp() + "");
+        Picasso.with(context).load("http://openweathermap.org/img/w/" + weatherVille.get(i).getWeather_Icon() + ".png").fit().into(holder.icon);
 
         return convertView;
 

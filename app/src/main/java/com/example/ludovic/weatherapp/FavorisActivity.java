@@ -113,8 +113,8 @@ public class FavorisActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(FavorisActivity.this, Main2Activity.class);
                                 intent.putExtra("ville",weatherVilleList.get(i).getName());
-                                intent.putExtra("lat",weatherVilleList.get(i).getLat());
-                                intent.putExtra("lon",weatherVilleList.get(i).getLon());
+                                intent.putExtra("lat",weatherVilleList.get(i).getCoord_Lat());
+                                intent.putExtra("lon",weatherVilleList.get(i).getCoord_Lon());
                                 Log.d("VILLE put",weatherVilleList.get(i).getName());
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);

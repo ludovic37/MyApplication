@@ -190,14 +190,14 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
 
             WeatherVille weatherVille = new WeatherVille(data);
 
-            lat = weatherVille.getLat();
-            lng = weatherVille.getLon();
+            lat = weatherVille.getCoord_Lat();
+            lng = weatherVille.getCoord_Lon();
 
             ((TextView) findViewById(R.id.textViewCity)).setText(weatherVille.getName());
-            ((TextView) findViewById(R.id.textViewMeteo)).setText(weatherVille.getDescription());
+            ((TextView) findViewById(R.id.textViewMeteo)).setText(weatherVille.getWeather_Description());
 
-            ((TextView) findViewById(R.id.textViewTemperature)).setText(Math.round(weatherVille.getTemp() * 10.0)/10.0 + "°C");
-            Picasso.with(this).load("http://openweathermap.org/img/w/" + weatherVille.getIcon() + ".png").fit().centerCrop().into((ImageView) findViewById(R.id.imageViewMeteo));
+            ((TextView) findViewById(R.id.textViewTemperature)).setText(Math.round(weatherVille.getMain_temp() * 10.0)/10.0 + "°C");
+            Picasso.with(this).load("http://openweathermap.org/img/w/" + weatherVille.getWeather_Icon() + ".png").fit().centerCrop().into((ImageView) findViewById(R.id.imageViewMeteo));
 
         } catch (JSONException e) {
             e.printStackTrace();
