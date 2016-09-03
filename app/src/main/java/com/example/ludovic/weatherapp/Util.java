@@ -20,7 +20,6 @@ import java.util.Locale;
 public class Util {
 
     public static String APIKEY = "d32d2d9784630a43b8479698062afe1f";
-    //public static Context context = this;
 
     public static boolean isActiveNetwork(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -30,7 +29,6 @@ public class Util {
 
     public static String converTime(long timestamp){
         SimpleDateFormat formater = new SimpleDateFormat("EE");
-        //System.out.println(formater.format(timestamp));
         return formater.format(timestamp);
     }
 

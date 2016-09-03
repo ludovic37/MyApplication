@@ -109,7 +109,6 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
                             myProgressDialog.dismiss();
                             updateUIHeader(data);
                             updateUI(data2);
-                            Log.d("JSON", response);
                         }
                     });
 
@@ -161,12 +160,6 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
     public void updatePrevision(WheatherPrevision wheatherPrevision) {
 
 
-        double a = wheatherPrevision.getMax()[0];
-
-        Log.d("tag","tag");
-
-        //((TextView) findViewById(R.id.textViewTemperature)).setText(Math.round(weatherVille.getTemp() * 10.0)/10.0 + "°C");
-
         ((TextView) findViewById(R.id.textViewTempMaxDay1)).setText(Math.round(wheatherPrevision.getMax()[0]*10.0)/10.0 + "°C");
         ((TextView) findViewById(R.id.textViewTempMinDay1)).setText(Math.round(wheatherPrevision.getMin()[0]*10.0)/10.0 + "°C");
         ((TextView) findViewById(R.id.textViewDay1)).setText(Util.converTime(wheatherPrevision.getDt()[0]));
@@ -174,12 +167,10 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
         Picasso.with(this).load("http://openweathermap.org/img/w/" + wheatherPrevision.getIcon()[0] + ".png").fit().into((ImageView) findViewById(R.id.imageViewDay1));
         Picasso.with(this).load("http://openweathermap.org/img/w/" + wheatherPrevision.getIcon()[0] + ".png").fit().into((ImageView) findViewById(R.id.imageViewDay1));
 
-
         ((TextView) findViewById(R.id.textViewTempMaxDay2)).setText(Math.round(wheatherPrevision.getMax()[1]*10.0)/10.0 + "°C");
         ((TextView) findViewById(R.id.textViewTempMinDay2)).setText(Math.round(wheatherPrevision.getMin()[1]*10.0)/10.0 + "°C");
         ((TextView) findViewById(R.id.textViewDay2)).setText(Util.converTime(wheatherPrevision.getDt()[1]));
         Picasso.with(this).load("http://openweathermap.org/img/w/" + wheatherPrevision.getIcon()[1] + ".png").fit().into((ImageView) findViewById(R.id.imageViewDay2));
-
 
         ((TextView) findViewById(R.id.textViewTempMaxDay3)).setText(Math.round(wheatherPrevision.getMax()[2]*10.0)/10.0 + "°C");
         ((TextView) findViewById(R.id.textViewTempMinDay3)).setText(Math.round(wheatherPrevision.getMin()[2]*10.0)/10.0 + "°C");
@@ -197,9 +188,6 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
 
         try {
 
-            Log.d("Tag", " ----------- test");
-            Log.d("Tag", data.toString());
-
             WeatherVille weatherVille = new WeatherVille(data);
 
             lat = weatherVille.getLat();
@@ -208,9 +196,6 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
             ((TextView) findViewById(R.id.textViewCity)).setText(weatherVille.getName());
             ((TextView) findViewById(R.id.textViewMeteo)).setText(weatherVille.getDescription());
 
-
-
-            //((TextView) findViewById(R.id.textViewTemperature)).setText(weatherVille.getTemp() + "°C");
             ((TextView) findViewById(R.id.textViewTemperature)).setText(Math.round(weatherVille.getTemp() * 10.0)/10.0 + "°C");
             Picasso.with(this).load("http://openweathermap.org/img/w/" + weatherVille.getIcon() + ".png").fit().centerCrop().into((ImageView) findViewById(R.id.imageViewMeteo));
 
@@ -261,8 +246,6 @@ public class Main2Activity extends AppCompatActivity implements LocationListener
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager.removeUpdates(this);
-            Log.d("TAG", "geoloc recu");
-            Log.d("TAG", "geoloc recu");
             dataApi(lat,lng);
         }
 

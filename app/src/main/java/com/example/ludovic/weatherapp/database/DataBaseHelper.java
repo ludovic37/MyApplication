@@ -11,7 +11,6 @@ import android.util.Log;
 import com.example.ludovic.weatherapp.Model.WeatherVille;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Ludovic on 24/08/16.
@@ -60,14 +59,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL( CREATE_TABLE_CITY);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL( "DROP TABLE IF EXISTS " +   TABLE_CITY);
         onCreate(sqLiteDatabase);
-
     }
 
     public void insert (WeatherVille weatherVille){
@@ -75,13 +72,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID_CITY, weatherVille.getId()); // Contact Name
-        values.put(KEY_NAME, weatherVille.getName()); // Contact Name
-        values.put(KEY_TEMP, weatherVille.getTemp()); // Contact Name
-        values.put(KEY_DESC, weatherVille.getDescription()); // Contact Name
-        values.put(KEY_RES_ICON, weatherVille.getIcon()); // Contact Name
-        values.put(KEY_LAT, weatherVille.getLat()); // Contact Name
-        values.put(KEY_LNG, weatherVille.getLon()); // Contact Phone Number
+        values.put(KEY_ID_CITY, weatherVille.getId());
+        values.put(KEY_NAME, weatherVille.getName());
+        values.put(KEY_TEMP, weatherVille.getTemp());
+        values.put(KEY_DESC, weatherVille.getDescription());
+        values.put(KEY_RES_ICON, weatherVille.getIcon());
+        values.put(KEY_LAT, weatherVille.getLat());
+        values.put(KEY_LNG, weatherVille.getLon());
 
         // Inserting Row
         db.insert(TABLE_CITY, null, values);
@@ -93,11 +90,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void deleteAll (){
 
         SQLiteDatabase db = this.getWritableDatabase();
-
-
         db.execSQL("DELETE FROM "+TABLE_CITY);
         db.close();
-
         Log.d("Tag","delete");
     }
 
@@ -105,7 +99,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         Log.d("TAG","Star Select");
 
-        ArrayList<WeatherVille> contactList = new ArrayList<WeatherVille>();
+        ArrayList<WeatherVille> weatherList = new ArrayList<WeatherVille>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_CITY;
 
@@ -125,13 +119,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 weatherVille.setLat(Double.parseDouble(cursor.getString(6)));
                 weatherVille.setLon(Double.parseDouble(cursor.getString(7)));
 
-
-                //contact.setID(Integer.parseInt(cursor.getString(0)));
-                //contact.setName(cursor.getString(1));
-                //contact.setPhoneNumber(cursor.getString(2));
-                // Adding contact to list
-
-                contactList.add(weatherVille);
+                weatherList.add(weatherVille);
                 Log.d("TAG",weatherVille.toString());
 
 
@@ -139,8 +127,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         }
 
-        // return contact list
-        return contactList;
+        // return weather list
+        return weatherList;
     }
 
 }

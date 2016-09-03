@@ -48,28 +48,15 @@ public class NewAppWidget extends AppWidgetProvider implements LocationListener 
     void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                          int appWidgetId) {
 
-        //CharSequence widgetText = context.getString(R.string.appwidget_text);
-        // Construct the RemoteViews object
-
-
-        Log.d("TAG","--------------");
-        Log.d("TAG","widget update");
         Log.d("TAG","--------------");
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        //views.setTextViewText(R.id.appwidget_text, widgetText);
         views.setTextViewText(R.id.textViewCityWidget, weatherVille.getName());
         views.setTextViewText(R.id.textViewMeteoWidget, weatherVille.getDescription());
         views.setTextViewText(R.id.textViewTemperatureWidget, weatherVille.getTemp()+"");
-        //views.setImageViewResource(R.id.imageViewMeteoWidget);
         Bitmap bitmap = getBitmapFromURL("http://openweathermap.org/img/w/" + weatherVille.getIcon() + ".png");
         if (bitmap!= null)
             views.setImageViewBitmap(R.id.imageViewMeteoWidget, bitmap);
-
-        //Picasso.with(context).load("http://openweathermap.org/img/w/" + weatherVille.getIcon() + ".png").fit().centerCrop()
-          //      .into(views,R.id.imageViewMeteoWidget,weatherVille.getIcon());
-
-
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -102,14 +89,6 @@ public class NewAppWidget extends AppWidgetProvider implements LocationListener 
 
         getGps(context);
     }
-    /*@Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
-
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
-        }
-    }*/
 
     @Override
     public void onEnabled(Context context) {
@@ -180,7 +159,6 @@ public class NewAppWidget extends AppWidgetProvider implements LocationListener 
                         public void run() {
 
                             update();
-                            Log.d("JSON", response);
                         }
                     });
 

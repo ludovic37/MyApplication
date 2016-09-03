@@ -31,12 +31,10 @@ public class FavorisActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
     public AdapterFavoris adapter;
-    //public RecyclerViewAdapterFavoris RVadapter;
 
     private Handler mHandler;
 
     private ListView listView;
-    //private RecyclerView listView;
     DataBaseHelper dataBaseHelper;
 
     private ArrayList<WeatherVille> weatherVilleList;
@@ -63,8 +61,6 @@ public class FavorisActivity extends AppCompatActivity {
 
         for (WeatherVille weatherVille : weatherVilleListId) {
 
-            //JSONObject jsonObject = jsonArray.getJSONObject(i);
-
             String id = weatherVille.getId()+"";
             if (listId == null)
                 listId = id;
@@ -74,8 +70,6 @@ public class FavorisActivity extends AppCompatActivity {
         requestApiActu(listId);
 
         listView.setAdapter(adapter);
-        //listView.setAdapter(RVadapter);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -151,21 +145,14 @@ public class FavorisActivity extends AppCompatActivity {
                 return;
             }
         }
-        //if (data.getInt("cod") == 200) {
             WeatherVille weatherVille = new WeatherVille(data);
             weatherVilleList.add(weatherVille);
             adapter.notifyDataSetChanged();
-            //RVadapter.notifyDataSetChanged();
             Log.d("TAG", "actu");
-        //}
     }
 
     public void actuAdapterActu(String json) throws JSONException {
         JSONObject data = new JSONObject(json);
-
-        //Log.d("TAG","---------");
-        Log.d("TAG",data.toString());
-        //Log.d("TAG","---------");
 
         JSONArray array = data.getJSONArray("list");
         int count = data.getInt("cnt");
@@ -174,14 +161,7 @@ public class FavorisActivity extends AppCompatActivity {
             JSONObject weather = array.getJSONObject(i);
 
             actuAdapter(weather.toString());
-
-
-            //WeatherVille weatherVille = new WeatherVille(weather);
-            //weatherVilleList.add(weatherVille);
-            //adapter.notifyDataSetChanged();
         }
-
-
         Log.d("TAG", "actu");
     }
 
@@ -197,8 +177,6 @@ public class FavorisActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
 
                         final String ville = ((EditText) view1.findViewById(R.id.editTextVille)).getText().toString().trim();
-
-                        Log.d("TAG --", "------------ "+ville);
 
                         requestApi(ville);
                     }
@@ -219,8 +197,6 @@ public class FavorisActivity extends AppCompatActivity {
             public void run() {
                 try {
                     final String response = Util.requestApi("http://api.openweathermap.org/data/2.5/weather?q=" + ville + "&units=metric&lang=fr&APPID=d32d2d9784630a43b8479698062afe1f");
-
-                    Log.d("TAG", "http://api.openweathermap.org/data/2.5/weather?q=" + ville + "&units=metric&lang=fr&APPID=d32d2d9784630a43b8479698062afe1f" );
 
                     mHandler.post(new Runnable() {
                         @Override
@@ -249,8 +225,6 @@ public class FavorisActivity extends AppCompatActivity {
                 try {
                     final String response = Util.requestApi("http://api.openweathermap.org/data/2.5/group?id=" + id + "&units=metric&lang=fr&APPID=d32d2d9784630a43b8479698062afe1f");
 
-                    Log.d("TAG", "http://api.openweathermap.org/data/2.5/group?id=" + id + "&units=metric&lang=fr&APPID=d32d2d9784630a43b8479698062afe1f" );
-
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -274,23 +248,10 @@ public class FavorisActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        //SharedPreferences.Editor editor = sharedPreferences.edit();
-        //DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
-
-        //JSONArray jsonArray = new JSONArray();
         dataBaseHelper.deleteAll();
 
         for (int i = 0; i < weatherVilleList.size(); i++) {
-            //jsonArray.put(arrayList.get(i).toJSON());
-            //jsonArray.put(weatherVilleList.get(i).getJsonObject());
-
             dataBaseHelper.insert(weatherVilleList.get(i));
         }
-
-        //Log.d("JSON ---", jsonArray.toString());
-
-        //editor.putString("MyObject", jsonArray.toString());
-        //editor.apply();
-
     }
 }

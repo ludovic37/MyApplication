@@ -48,31 +48,21 @@ public class AdapterFavoris extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
-
-        //Log.d("lol", "-------------> pos : " +i );
         ViewHolder holder;
 
         if (convertView == null) {
 
-            // Nouvel objet avec les composants de l’item
             holder = new ViewHolder();
-            // La nouvelle vue est initialisé avec le layout d’un item
             convertView = inflater.inflate(R.layout.item_favoris, null);
-            // Initialisation des attributs de notre objet ViewHolder
 
             holder.ville = (TextView) convertView.findViewById(R.id.textViewFavorisVille);
             holder.meteo = (TextView) convertView.findViewById(R.id.textViewFavorisMeteo);
             holder.temp = (TextView) convertView.findViewById(R.id.textViewFavorisTemp);
             holder.icon = (ImageView) convertView.findViewById(R.id.imageViewFavoris);
-            // On lie l’objet ViewHolder à la vue pour le sauvegarder grace à setTag
             convertView.setTag(holder);
         } else {
-            // On initialise l’objet ViewHolder grace au tag de la vue qui avait été
-            // sauvegardé
             holder = (ViewHolder) convertView.getTag();
         }
-
-        //convertView = inflater.inflate(R.layout.items_listeview, null);
 
         holder.ville.setText(weatherVille.get(i).getName());
         holder.meteo.setText(weatherVille.get(i).getDescription());

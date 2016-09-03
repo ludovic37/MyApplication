@@ -28,14 +28,10 @@ public class WeatherVille {
 
     public WeatherVille(JSONObject jsonObject) throws JSONException {
 
-            //Log.d("TAG","-----------");
-            //Log.d("TAG",jsonObject.toString());
-
             JSONArray array = jsonObject.getJSONArray("weather");
             JSONObject weather = array.getJSONObject(0);
             JSONObject main = jsonObject.getJSONObject("main");
             JSONObject coordonner = jsonObject.getJSONObject("coord");
-            //JSONObject sys = jsonObject.getJSONObject("sys");
 
             this.name = jsonObject.getString("name");
             this.description = weather.getString("description");
